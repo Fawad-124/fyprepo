@@ -337,7 +337,7 @@ def insertintotable():
         auth.set_access_token(ct.access_token, ct.access_token_secret)
         user = tweepy.API(auth)
         
-        tweets = tweepy.Cursor(user.search, q=symbol, tweet_mode='extended', lang='en',exclude_replies=True).items(ct.num_of_tweets)
+        tweets = tweepy.Cursor(user.search_tweets, q=symbol, tweet_mode='extended', lang='en',exclude_replies=True).items(ct.num_of_tweets)
         
         tweet_list = [] #List of tweets alongside polarity
         global_polarity = 0 #Polarity of all tweets === Sum of polarities of individual tweets
@@ -387,8 +387,8 @@ def insertintotable():
             global_polarity = global_polarity
         neutral=ct.num_of_tweets-pos-neg
         if neutral<0:
-        	neg=neg+neutral
-        	neutral=20
+            neg=neg+neutral
+            neutral=20
         print()
         print("##############################################################################")
         print("Positive Tweets :",pos,"Negative Tweets :",neg,"Neutral Tweets :",neutral)
